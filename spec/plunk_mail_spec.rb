@@ -3,5 +3,3 @@ describe PlunkMail do
     expect(PlunkMail::VERSION).not_to be_nil
   end
 end
-
-
