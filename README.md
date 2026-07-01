@@ -1,8 +1,8 @@
 # PlunkMail
 
-ActionMailer delivery method for sending emails through Plunk.
+ActionMailer delivery method for sending emails through Plunk (https://www.useplunk.com/).
 
-PlunkMail allows Rails applications to use Plunk as an ActionMailer delivery method:
+PlunkMail allows Rails applications to use Plunk (https://www.useplunk.com/) as an ActionMailer delivery method:
 
 ```ruby
 config.action_mailer.delivery_method = :plunk
