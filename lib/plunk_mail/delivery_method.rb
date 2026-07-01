@@ -1,3 +1,5 @@
+require "faraday"
+
 module PlunkMail
   class DeliveryMethod
     def initialize(settings = {})
