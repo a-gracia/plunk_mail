@@ -317,6 +317,7 @@ DEPENDENCIES
   propshaft
   puma
   rspec
+  rubocop
   rubocop-rails-omakase
   sqlite3
   webmock
