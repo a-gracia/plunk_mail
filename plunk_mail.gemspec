@@ -3,11 +3,13 @@ require_relative "lib/plunk_mail/version"
 Gem::Specification.new do |spec|
   spec.name        = "plunk_mail"
   spec.version     = PlunkMail::VERSION
-  spec.authors     = [ "Andres" ]
+  spec.authors     = [ "Andres Gracia Danies" ]
   spec.email       = [ "18741308+a-gracia@users.noreply.github.com" ]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of PlunkMail."
-  spec.description = "TODO: Description of PlunkMail."
+  spec.homepage    = "https://github.com/a-gracia/plunk_mail"
+  spec.summary     = "ActionMailer delivery method for sending emails through Plunk.
+
+"
+  spec.description = "PlunkMail allows Rails applications to use Plunk as an ActionMailer delivery method."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
