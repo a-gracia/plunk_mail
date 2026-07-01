@@ -32,4 +32,5 @@ module PlunkMail
     def email_body(mail)
       mail.html_part&.body&.decoded || mail.body.decoded
     end
+  end
 end
