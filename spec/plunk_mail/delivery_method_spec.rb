@@ -1,34 +1,33 @@
-require "test_helper"
-require "webmock/minitest"
+require "webmock/rspec"
 require "faraday"
 require "json"
+require "plunk_mail"
 
-class PlunkMail::DeliveryMethodTest < ActiveSupport::TestCase
-  setup do
-    @delivery = PlunkMail::DeliveryMethod.new(
+describe PlunkMail::DeliveryMethod do
+  let(:delivery) do
+    described_class.new(
       api_key: "test_key"
     )
   end
 
-  test "sends email to Plunk" do
+  it "sends email to Plunk" do
     stub_request(
       :post,
       "https://next-api.useplunk.com/v1/send"
     ).with do |request|
-      assert_equal "Bearer test_key", request.headers["Authorization"]
-      assert_equal "application/json", request.headers["Content-Type"]
+      expect(request.headers["Authorization"]).to eq("Bearer test_key")
+      expect(request.headers["Content-Type"]).to eq("application/json")
 
       body = JSON.parse(request.body)
 
-      assert_equal "user@example.com", body["to"]
-      assert_equal "Hello", body["subject"]
-      assert_equal "Test body", body["body"]
+      expect(body["to"]).to eq("user@example.com")
+      expect(body["subject"]).to eq("Hello")
+      expect(body["body"]).to eq("Test body")
 
-      assert_equal(
+      expect(body["from"]).to eq(
         {
           "email" => "sender@example.com"
-        },
-        body["from"]
+        }
       )
     end.to_return(
       status: 200,
@@ -42,29 +41,27 @@ class PlunkMail::DeliveryMethodTest < ActiveSupport::TestCase
       body "Test body"
     end
 
-    response = @delivery.deliver!(mail)
+    response = delivery.deliver!(mail)
 
-    assert_equal 200, response.status
+    expect(response.status).to eq(200)
   end
 
-
-  test "uses html body when email has html part" do
+  it "uses html body when email has html part" do
     stub_request(
       :post,
       "https://next-api.useplunk.com/v1/send"
     ).with do |request|
       body = JSON.parse(request.body)
 
-      assert_equal "user@example.com", body["to"]
-      assert_equal "Hello", body["subject"]
-      assert_equal "<h1>Hello</h1>", body["body"]
+      expect(body["to"]).to eq("user@example.com")
+      expect(body["subject"]).to eq("Hello")
+      expect(body["body"]).to eq("<h1>Hello</h1>")
 
-      assert_equal(
+      expect(body["from"]).to eq(
         {
           "name" => "Rischio",
           "email" => "hello@example.com"
-        },
-        body["from"]
+        }
       )
     end.to_return(
       status: 200,
@@ -86,8 +83,8 @@ class PlunkMail::DeliveryMethodTest < ActiveSupport::TestCase
       end
     end
 
-    response = @delivery.deliver!(mail)
+    response = delivery.deliver!(mail)
 
-    assert_equal 200, response.status
+    expect(response.status).to eq(200)
   end
 end

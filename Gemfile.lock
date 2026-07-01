@@ -95,6 +95,7 @@ GEM
       rexml
     crass (1.0.7)
     date (3.5.1)
+    diff-lcs (1.6.2)
     drb (2.2.3)
     erb (6.0.4)
     erubi (1.13.1)
@@ -230,6 +231,19 @@ GEM
     reline (0.6.3)
       io-console (~> 0.5)
     rexml (3.4.4)
+    rspec (3.13.2)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.6)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.7)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.6)
     rubocop (1.88.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -302,6 +316,7 @@ DEPENDENCIES
   plunk_mail!
   propshaft
   puma
+  rspec
   rubocop-rails-omakase
   sqlite3
   webmock
